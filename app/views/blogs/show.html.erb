@@ -6,7 +6,7 @@
 
 <hr/>
 <div class="miniBlog">
-  <p><%= @blog.id %>: <span class="timestamp">投稿日時: <%= @blog.created_at %></span> | <%= link_to 'いいね', controller: 'blogs', action: 'like', id: @blog.id, is_show: 1 %>: <%= @blog.like%></p>
+  <p><%= @blog.id %>: <span class="timestamp">投稿日時: <%= @blog.created_at.to_s(:published_on) %></span> | <%= link_to 'いいね', controller: 'blogs', action: 'like', id: @blog.id, is_show: 1 %>: <%= @blog.like%></p>
   <p class="blogBody"><%= @blog.body %></p>
 </div>
 
@@ -21,7 +21,7 @@
 <ol id="replies">
   <% @replies.reverse_each do |reply| %>
     <li class="reply">
-      <span class="commentBody"><%=  reply.comment %></span> | <span class="timestamp">投稿日時: <%=  reply.created_at %></span>
+      <span class="commentBody"><%=  reply.comment %></span> | <span class="timestamp">投稿日時: <%=  reply.created_at.to_s(:published_on) %></span>
     </li>
   <% end %>
 </ol>

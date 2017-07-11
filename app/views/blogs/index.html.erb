@@ -18,7 +18,7 @@
       <p>
         <%= link_to 'いいね', controller: 'blogs', action: 'like', id: blog.id, is_show: 0 %>: <%= blog.like%> | 
         コメント数: <%= @replies.where(blog_id:blog.id).length %> | 
-        <span class="timestamp">投稿日時: <%= blog.created_at %></span>
+        <span class="timestamp">投稿日時: <%= blog.created_at.to_s(:published_on) %></span>
       </p>
     </li>
   <% end %>
