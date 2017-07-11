@@ -6,7 +6,7 @@
 
 <hr/>
 
-<p><%= @blog.id %>: 投稿日時: <%= @blog.created_at %> | <%= link_to 'いいね', @blog, method: :like %>: <%= @blog.like%></p>
+<p><%= @blog.id %>: 投稿日時: <%= @blog.created_at %> | <%= link_to 'いいね', controller: 'blogs', action: 'like', id: @blog.id, is_show: 1 %>: <%= @blog.like%></p>
 <p><%= @blog.body %></p>
 
 <%= form_for @reply, :url => {:controller => :replies, :action => :create} do |f| %>

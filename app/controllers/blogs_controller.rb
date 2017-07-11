@@ -26,6 +26,30 @@ class BlogsController < ApplicationController
   def edit
   end
 
+  # GET /blogs/1/like?[params]
+  # params:
+  # is_show: 0 or 1
+  #   0: user show a list of the mini blog
+  #   1: user show a detail page of the mini blog
+  def like
+    begin
+      @blog = Blog.all.find(params[:id])
+      @blog.like += 1
+      respond_to do |format|
+        if @blog.save
+          format.html { redirect_to action: params[:is_show].to_i == 0 ? 'index' : 'show' }
+        else
+          format.html { render :new }
+          format.json { render json: @blog.errors, status: :unprocessable_entity }
+        end
+      end
+    rescue e
+      logger.error e
+      format.html { render :new }
+      format.json { render json: @blog.errors, status: :unprocessable_entity }
+    end
+  end
+
   # POST /blogs
   # POST /blogs.json
   def create

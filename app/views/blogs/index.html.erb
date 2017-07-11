@@ -16,7 +16,7 @@
         <%= blog.id %>:<%= link_to blog.body, blog %>
       </p>
       <p>
-        <%= link_to 'いいね', blog, method: :like %>: <%= blog.like%> | 
+        <%= link_to 'いいね', controller: 'blogs', action: 'like', id: blog.id, is_show: 0 %>: <%= blog.like%> | 
         コメント数: <%= @replies.where(blog_id:blog.id).length %> | 
         投稿日時: <%= blog.created_at %>
       </p>
