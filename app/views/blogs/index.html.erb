@@ -16,8 +16,9 @@
       <tr>
         <td><%= blog.id %>:<%= link_to blog.body, blog %></td>
         <tr>
-          <td><%= link_to 'いいね', blog %>: <%= blog.like%> |</td>
-          <td>コメント数: | </td>
+          <td><%= link_to 'いいね', blog, method: :like %>: <%= blog.like%> |</td>
+          <td>コメント数: <%= @replies.where(blog_id:blog.id).length %>
+           | </td>
           <td>投稿日時: <%= blog.created_at %></td>
         </tr>
       </tr>
