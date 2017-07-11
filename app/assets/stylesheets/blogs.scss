@@ -1,3 +1,31 @@
 // Place all the styles related to the blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$lineColor : #eee;
+$bodyFontSize: 120%;
+
+ol {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.miniBlog, .reply{
+    border-bottom: 1px solid $lineColor;
+    padding-bottom:10px;
+    padding-left:10px;
+    margin-top:10px;
+}
+
+.blogBody, .commentBody{
+    font-weight: bold;
+    font-size: $bodyFontSize;
+}
+
+.id{
+    font-size: $bodyFontSize;
+}
+
+.timestamp{
+    color:#999
+}

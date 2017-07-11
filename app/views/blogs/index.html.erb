@@ -11,14 +11,14 @@
 
 <ol>
   <% @blogs.reverse_each do |blog| %>
-    <li>
+    <li class="miniBlog">
       <p>
-        <%= blog.id %>:<%= link_to blog.body, blog %>
+        <span class="id"><%= blog.id %></span>:<%= link_to blog.body, blog, :class => 'blogBody' %>
       </p>
       <p>
         <%= link_to 'いいね', controller: 'blogs', action: 'like', id: blog.id, is_show: 0 %>: <%= blog.like%> | 
         コメント数: <%= @replies.where(blog_id:blog.id).length %> | 
-        投稿日時: <%= blog.created_at %>
+        <span class="timestamp">投稿日時: <%= blog.created_at %></span>
       </p>
     </li>
   <% end %>
