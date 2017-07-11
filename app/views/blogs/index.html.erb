@@ -2,10 +2,10 @@
 
 <h1>Mini blog</h1>
 
-<form class="new_blog" id="new_blog" action="/blogs/create" accept-charset="UTF-8" method="post">
-  <input size="80%" placeholder="投稿しよう" type="text" value="" name="blog[body]" id="blog_body" />
-  <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する" />
-</form>
+<%= form_for @blog, :url => {:controller => :blogs, :action => :create} do |f| %>
+  <%= f.text_field :body, :placeholder => '投稿しよう', :size => '80%', :name => 'blog[body]', :id => 'blog_body' %>
+  <%= f.submit "投稿する", :name => 'commit', :disable_with => '投稿する' %>
+<% end %>
 
 <hr/>
 
