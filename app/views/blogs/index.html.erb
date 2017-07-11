@@ -1,28 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Blogs</h1>
+<h1>Mini blog</h1>
+
+<form class="new_blog" id="new_blog" action="/blogs/create" accept-charset="UTF-8" method="post">
+  <input size="80%" placeholder="投稿しよう" type="text" value="" name="blog[body]" id="blog_body" />
+  <input type="submit" name="commit" value="投稿する" data-disable-with="投稿する" />
+</form>
+
+<hr/>
 
 <table>
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th>Like</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody>
-    <% @blogs.each do |blog| %>
+    <% @blogs.reverse_each do |blog| %>
       <tr>
-        <td><%= blog.body %></td>
-        <td><%= blog.like %></td>
-        <td><%= blog.created_at %></td>
-        <td><%= blog.updated_at %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= blog.id %>:<%= link_to blog.body, blog %></td>
+        <tr>
+          <td><%= link_to 'いいね', blog %>: <%= blog.like%> |</td>
+          <td>コメント数: | </td>
+          <td>投稿日時: <%= blog.created_at %></td>
+        </tr>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +27,7 @@
 
 <br>
 
-<%= link_to 'New Blog', new_blog_path %>
+<%
+=begin link_to 'New Blog', new_blog_path 
+=end
+%>
