@@ -1,24 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @blog.body %>
-</p>
+<h1>Mini blog</h1>
 
-<p>
-  <strong>Like:</strong>
-  <%= @blog.like %>
-</p>
+<%= link_to '戻る', blogs_path %>
 
-<p>
-  <strong>Created at:</strong>
-  <%= @blog.created_at %>
-</p>
+<hr/>
 
-<p>
-  <strong>Updated at:</strong>
-  <%= @blog.updated_at %>
-</p>
+<p><%= @blog.id %>: 投稿日時: <%= @blog.created_at %> | <%= link_to 'いいね', @blog, method: :like %>: <%= @blog.like%></p>
+<p><%= @blog.body %></p>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+<%= form_for @reply, :url => {:controller => :replies, :action => :create} do |f| %>
+  <%= f.text_field :comment, :placeholder => 'コメントしよう', :size => '80%', :name => 'reply[comment]', :id => 'reply_comment' %>
+  <%= f.hidden_field :blog_id, :value => @blog.id %>
+  <%= f.submit "コメントする", :name => 'commit', :disable_with => 'コメントする' %>
+<% end %>
+
+<hr/>
+
+<ol id="replies">
+  <% @replies.reverse_each do |reply| %>
+    <li class="reply">
+      <%=  reply.comment %> | 投稿日時: <%=  reply.created_at %>
+    </li>
+  <% end %>
+</ol>
